@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 import styled from 'styled-components/native';
 
 const Page = styled.View`
@@ -36,26 +35,18 @@ const Texto = styled.Text`
   font-size: 20px;
 `;
 
-function LoginScreen() {
-
-  const navigation = useNavigation();
-
-  const handlerClick = () => {
-    navigation.navigate('Cadastro');
-  }
-
+function CadastroScreen() {
   return (
       <Page>   
-        <Texto>E-mail:</Texto>      
+        <Texto>Nome:</Texto>      
         <Input />
+        <Texto>E-mail:</Texto>      
+        <Input />        
         <Botao>
-          <BotaoTexto>Entrar</BotaoTexto>
-        </Botao> 
-        <Botao onPress={handlerClick}>
           <BotaoTexto>Cadastrar</BotaoTexto>
         </Botao>     
       </Page>
   );
 };
 
-export default LoginScreen;
+export default CadastroScreen;
