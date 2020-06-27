@@ -3,33 +3,29 @@ import { connect } from 'react-redux';
 import action from '../action/action';
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, AsyncStorage } from 'react-native';
 
-class TarefasScreen extends React.Component {
+function TarefasScreen({navigation, dispatch, userData}) {
 
-  // constructor(props)
-
-  componentDidMount() {
-    console.log('componentDidMount')
+  useEffect(() => {
     AsyncStorage.getItem('data_user')
-      .then((data_user) => {
-        console.log('asyncstorage', data_user)
+      .then((data_user) => {        
         if (data_user == null) {
-          this.props.navigation.navigate('Login')
+          navigation.navigate('Login')
         } else {
           const user = JSON.parse(data_user)
-          this.props.dispatch(action(user))
-        }
+          console.log('JSONparse', user)
+          dispatch(action(user))          
+        }       
       })
       .catch((err) => {
         console.log('erro: ', err)
       })
-  }
-
-  render() {
-    console.log('userData', this.props.userData)
+  }, [])  
+  
+  console.log('store: ', userData)
 
     return (
       <View style={styles.container}>
-        <Text style={styles.h1}>Olá, {this.props.userData.user.fullName}!</Text>
+        <Text style={styles.h1}>Olá, {userData}!</Text>
         <Text style={styles.h2}>Aqui estão suas tarefas:</Text>
         <TextInput style={styles.input} placeholder="O que você tem para fazer?" />
         <TouchableOpacity style={styles.botao}>
@@ -39,7 +35,6 @@ class TarefasScreen extends React.Component {
     );
   }
 
-}
 
 const mapStateToProps = (store) => {
   return ({

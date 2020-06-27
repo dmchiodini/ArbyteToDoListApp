@@ -1,6 +1,6 @@
 export default function action(userData) {
-    return {
+    return ({
         type:'DATA_SAVE',
         userData
-    };
+    });
 }

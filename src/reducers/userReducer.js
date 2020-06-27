@@ -1,4 +1,4 @@
-const initialState = { userData: { user:{} } }
+const initialState = { userData: {} }
 
 export default (store = initialState, action) => {
     switch(action.type) {
