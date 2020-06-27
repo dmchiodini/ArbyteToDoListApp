@@ -29,7 +29,7 @@ class TarefasScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.h1}>Olá,!</Text>
+        <Text style={styles.h1}>Olá, {this.props.userData.user.fullName}!</Text>
         <Text style={styles.h2}>Aqui estão suas tarefas:</Text>
         <TextInput style={styles.input} placeholder="O que você tem para fazer?" />
         <TouchableOpacity style={styles.botao}>
