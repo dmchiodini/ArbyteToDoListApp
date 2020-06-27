@@ -1,20 +1,18 @@
 
 import 'react-native-gesture-handler';
 import * as React from 'react';
+import { Provider } from 'react-redux';
+import Store from './src/Store';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import MainStack from './src/navigators/MainStack';
 
-import Header from './src/componentes/Header'
-
-const Stack = createStackNavigator();
-
-
 function App() {
-  return (    
-    <NavigationContainer>
-      <MainStack />
-    </NavigationContainer>
+  return (  
+    <Provider store={Store}>
+      <NavigationContainer>
+        <MainStack />
+      </NavigationContainer>
+    </Provider>
   );
 }
 
