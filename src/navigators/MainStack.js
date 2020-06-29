@@ -14,7 +14,7 @@ export default () => {
                 title: 'To Do List',
                 headerTitleAlign: 'center',
                 headerStyle: {
-                    backgroundColor: '#000000',
+                    backgroundColor: '#414b6e',
                 },
                 headerTitleStyle:{
                     color: '#FFF',
@@ -25,7 +25,7 @@ export default () => {
             <MainStack.Screen name="Login" component={LoginScreen} options={{
                  headerTitleAlign: 'center',
                  headerStyle: {
-                     backgroundColor: '#000000',
+                     backgroundColor: '#414b6e',
                  },
                  headerTitleStyle:{
                      color: '#FFF',
@@ -36,7 +36,7 @@ export default () => {
             <MainStack.Screen name="Cadastro" component={CadastroScreen} options={{
                  headerTitleAlign: 'center',
                  headerStyle: {
-                     backgroundColor: '#000000',
+                     backgroundColor: '#414b6e',
                  },
                  headerTitleStyle:{
                      color: '#FFF',

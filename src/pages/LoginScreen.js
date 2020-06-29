@@ -1,26 +1,23 @@
 import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { SafeAreaView, StyleSheet, View, Text, TextInput, TouchableOpacity, AsyncStorage } from 'react-native';
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, AsyncStorage } from 'react-native';
 import login from '../API/ValidaLogin';
-
-
 
 function LoginScreen(props) {
   const [ email, setEmail ] = useState('');
 
   const handlerClick = () => {
-    props.navigation.navigate('Cadastro');
+    props.navigation.push('Cadastro');
   }
 
   const isLoginValid = () => email != '';
 
-  const validacaoLogin = async () => {
+  const validacaoLogin = () => {
     if(!isLoginValid()){
       return alert("Preencha os campos obrigatórios!");
     }
     login(email)
-      .then(resp => {       
-          return AsyncStorage.setItem('data_user', JSON.stringify(resp));
+      .then(resp => {
+          return AsyncStorage.setItem('data_user', JSON.stringify(resp));          
         })
         .then(() => {
           props.navigation.push('Tarefas')
@@ -46,22 +43,28 @@ function LoginScreen(props) {
   );
 };
 
+
 export default LoginScreen;
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: '#d7dcf9'
   },
   texto: {
     fontSize: 20,
+    fontWeight: 'bold',
+    color: '#414b6e'
   },
   input: {
     width: 350,
     height: 40,
-    fontSize: 18,
-    backgroundColor: '#CCCCCC',
+    fontSize: 17,
+    color: '#414b6e',
+    backgroundColor: '#FFF',
     marginBottom: 50,
     marginTop: 10,
     borderRadius: 5,
@@ -69,7 +72,7 @@ const styles = StyleSheet.create({
   botao: {
     width: 150,
     height: 50,
-    backgroundColor: '#696969',
+    backgroundColor: '#6a7ec0',
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 20,
@@ -83,7 +86,7 @@ const styles = StyleSheet.create({
   botaoCadastrar: {
     width: 150,
     height: 50,
-    backgroundColor: '#333333',
+    backgroundColor: '#414b6e',
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 20,
