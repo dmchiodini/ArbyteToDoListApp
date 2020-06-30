@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import action from '../action/action';
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, AsyncStorage, ScrollView, CheckBox } from 'react-native';
 import buscarTarefas from '../API/GetTasks';
 import adicionarTarefa from '../API/AddTask';
 import completarTarefa from '../API/CompletedTask';
+import editarTarefa from '../API/editTask'
 import AddTaskArea from '../componentes/AddTaskArea';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import deletarTarefa from '../API/DeleteTask';
+import TaskArea from '../componentes/TaskArea';
+
 
 
 function TarefasScreen({navigation, dispatch, userData}) {
@@ -22,7 +24,7 @@ function TarefasScreen({navigation, dispatch, userData}) {
     AsyncStorage.getItem('data_user')
       .then((data_user) => {        
         if (data_user == null) {
-          navigation.navigate('Login')
+          navigation.push('Login')
         } else {
           const user = JSON.parse(data_user)
           dispatch(action(user))        
@@ -38,29 +40,46 @@ function TarefasScreen({navigation, dispatch, userData}) {
     .then(resp => {
       setAllTarefas(resp)
     })
-  }, [deletar, addTarefa])
+    .catch((rtt)=>{
+      console.log('erro: ', err)
+    })
+  }, [deletar, addTarefa, editar, toggleStatus])
 
-function addTarefa() {
-  if(tarefa.trim() != ''){
-    adicionarTarefa(tarefa, status, userData.token)
-      .then(resp => {
-          setTarefa('');
-      })
-      .catch(erro => {
-        alert("Não foi possível adicionar a tarefa!")
+  function addTarefa() {
+    if(tarefa.trim() != ''){
+      adicionarTarefa(tarefa, status, userData.token)
+        .then(resp => {
+            setTarefa('');
+        })
+        .catch(erro => {
+          alert("Não foi possível adicionar a tarefa!")
+        })
+    }
+  }
+
+  function toggleStatus(status, id){
+    completarTarefa(userData.token, !status, id)
+      .then(()=>{})
+      .catch((err)=>{
+        console.log('Erro: ', err)
       })
   }
-}
 
-function toggleStatus(status, id){
-  completarTarefa(userData.token, !status, id)
-    .then(()=>{})
-}
+  function editar(task, id){
+    editarTarefa(userData.token, task, id)
+      .then(()=>{})
+      .catch((err)=>{
+        console.log('Erro: ',err)
+      })
+  }
 
-function deletar(id) {
-  deletarTarefa(userData.token, id)
-    .then(()=>{}) 
-}
+  function deletar(id) {
+    deletarTarefa(userData.token, id)
+      .then(()=>{})
+      .catch((err)=>{
+        console.log('Erro: ', err)
+      })
+  }
 
   const sair = async () => {
     try {
@@ -72,39 +91,38 @@ function deletar(id) {
     }
   }
 
-    return (
-      <View style={styles.container}>
-        <View style={styles.view}>
-          <View style={styles.viewCenter}>
-            <Text style={styles.h1}>Olá, {userData.user.fullName}!</Text>
-            <Text style={styles.h2}>Aqui estão suas tarefas:</Text>
-          </View> 
-
-          <AddTaskArea tarefa={tarefa} setTarefa={setTarefa} addTarefa={addTarefa}/>
-        
-          <ScrollView style={styles.scroll}>          
-            {allTarefas.map((task) => {
-              return(       
-              <View style={styles.itemLista} activeOpacity={0.3} key={task.id}>     
-                <CheckBox value={task.completed} onChange={()=>toggleStatus(task.completed, task.id)} />
-                <Text style={styles.textoLista}>{task.description}</Text>
-                <TouchableOpacity onPress={()=>{deletar(task.id)}}>
-                  <Icon name="delete" size={30} color="#696969" />
-                </TouchableOpacity>
-              </View>
-              )            
+  return (
+    <View style={styles.container}>
+      <View style={styles.view}>
+        <View style={styles.viewCenter}>
+          <Text style={styles.h1}>Olá, {userData.user.fullName}!</Text>
+          <Text style={styles.h2}>Aqui estão suas tarefas:</Text>
+        </View> 
+        <AddTaskArea tarefa={tarefa} setTarefa={setTarefa} addTarefa={addTarefa}/>  
+        <ScrollView style={styles.scroll}>          
+            {allTarefas.sort((a, b)=>a.completed - b.completed).map((task) => {
+              return(             
+                <TaskArea                   
+                  toggleStatus={toggleStatus} 
+                  deletar={deletar}                  
+                  editar={editar}
+                  tarefa={task.description}
+                  id={task.id}
+                  completed={task.completed}
+                />
+                )            
             })}
-          </ScrollView>       
-
-          <View style={styles.viewCenter}>
-            <TouchableOpacity style={styles.botao} onPress={sair}>
-              <Text style={styles.textoBotao}>Sair</Text>
-            </TouchableOpacity>
-          </View>
+        </ScrollView> 
+        <View style={styles.viewCenter}>
+          <TouchableOpacity style={styles.botao} onPress={sair}>
+            <Text style={styles.textoBotao}>Sair</Text>
+          </TouchableOpacity>
         </View>
       </View>
-    );
-  }
+    </View>
+  );
+
+}
 
 const mapStateToProps = (store) => {
   return ({
@@ -128,11 +146,9 @@ const styles = StyleSheet.create({
   viewCenter: {
     flexDirection: 'column',
     alignItems: 'center',
-    marginBottom: 20,
-    marginTop: 28
+    marginBottom: 20    
   },
   h1: {
-    marginTop: 20,
     fontSize: 24,
     fontWeight: 'bold',
     color: '#414b6e'

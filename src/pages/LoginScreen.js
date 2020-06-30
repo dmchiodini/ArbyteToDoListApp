@@ -43,9 +43,7 @@ function LoginScreen(props) {
   );
 };
 
-
 export default LoginScreen;
-
 
 const styles = StyleSheet.create({
   container: {
