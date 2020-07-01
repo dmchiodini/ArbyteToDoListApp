@@ -9,41 +9,20 @@ const MainStack = createStackNavigator();
 
 export default () => {
     return (
-        <MainStack.Navigator>      
-            <MainStack.Screen name="Tarefas" component={TarefasScreen} options={{
-                title: 'To Do List',
-                headerTitleAlign: 'center',
-                headerStyle: {
-                    backgroundColor: '#414b6e',
-                },
-                headerTitleStyle:{
-                    color: '#FFF',
-                    fontSize: 22,
-                    fontWeight: 'bold'
-                }
-            }} />     
-            <MainStack.Screen name="Login" component={LoginScreen} options={{
-                 headerTitleAlign: 'center',
-                 headerStyle: {
-                     backgroundColor: '#414b6e',
-                 },
-                 headerTitleStyle:{
-                     color: '#FFF',
-                     fontSize: 22,
-                     fontWeight: 'bold'
-                 }
-            }} />                         
-            <MainStack.Screen name="Cadastro" component={CadastroScreen} options={{
-                 headerTitleAlign: 'center',
-                 headerStyle: {
-                     backgroundColor: '#414b6e',
-                 },
-                 headerTitleStyle:{
-                     color: '#FFF',
-                     fontSize: 22,
-                     fontWeight: 'bold'
-                 }
-            }}/>                       
+        <MainStack.Navigator screenOptions={{
+            headerTitleAlign: 'center',
+            headerStyle: {
+                backgroundColor: '#414b6e',
+            },
+            headerTitleStyle:{
+                color: '#FFF',
+                fontSize: 22,
+                fontWeight: 'bold'
+            }
+        }}>      
+            <MainStack.Screen name="Tarefas" component={TarefasScreen} options={{title: 'To Do List'}} />     
+            <MainStack.Screen name="Login" component={LoginScreen}/>                         
+            <MainStack.Screen name="Cadastro" component={CadastroScreen}/>                       
         </MainStack.Navigator>
     );
 }

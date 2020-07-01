@@ -5,7 +5,6 @@ import { StyleSheet, View, Text, TextInput, TouchableOpacity, AsyncStorage, Scro
 import buscarTarefas from '../API/GetTasks';
 import adicionarTarefa from '../API/AddTask';
 import completarTarefa from '../API/CompletedTask';
-import editarTarefa from '../API/editTask'
 import AddTaskArea from '../componentes/AddTaskArea';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import deletarTarefa from '../API/DeleteTask';
