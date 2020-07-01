@@ -1,9 +1,5 @@
-<h1>"ArbyteToDoListApp"<b/>
-<p>App para listar tarefas.</p>
-<br/>
-
-<h3>Tecnologia usada no projeto:</h3> 
-<p>React-Native </p>
+<h1>"ArbyteToDoListApp"</h1>
+<p>App de listar tarefas desenvolvido em React-Native.</p>
 <br/>
 
 <h3>Dentro do projeto trabalhei com os seguintes recursos:</h3>
