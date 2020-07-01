@@ -43,7 +43,7 @@ function TarefasScreen({navigation, dispatch, userData}) {
     .catch((rtt)=>{
       console.log('erro: ', err)
     })
-  }, [deletar, addTarefa, editar, toggleStatus])
+  }, [deletar, addTarefa, toggleStatus])
 
   function addTarefa() {
     if(tarefa.trim() != ''){
@@ -57,22 +57,14 @@ function TarefasScreen({navigation, dispatch, userData}) {
     }
   }
 
-  function toggleStatus(status, id){
-    completarTarefa(userData.token, !status, id)
+  function toggleStatus(status, description, id){
+    completarTarefa(userData.token, !status, description, id)
       .then(()=>{})
       .catch((err)=>{
         console.log('Erro: ', err)
       })
   }
-
-  function editar(task, id){
-    editarTarefa(userData.token, task, id)
-      .then(()=>{})
-      .catch((err)=>{
-        console.log('Erro: ',err)
-      })
-  }
-
+  
   function deletar(id) {
     deletarTarefa(userData.token, id)
       .then(()=>{})
