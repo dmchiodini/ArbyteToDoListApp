@@ -8,7 +8,7 @@
 <p><b>Redux</b>: Para guardar os dados do usuário.</p>
 <p><b>Axios</b>: Para os endpoints.</p>
 <p><b>REST API(Fornecida pelo professor do curso)</b>: para cadastrar usuários, tarefas e fazer login.</p>
-<br/>
+<br/><br/>
 
 <h3>Como Utilizar:</h3>
 <ul>
@@ -21,10 +21,11 @@
 <li>Você também pode excluir uma tarefa, basta clicar no ícone da lixeira que aparece ao lado da tarefa que deseja excluir.</li>
 </ul>
 <br/>
-
+<br/>
 
 
 ![imgGitH](https://user-images.githubusercontent.com/41700939/86270970-7fb6bd80-bba2-11ea-9fb4-96861efda0a4.png)
+<br/><br/>
 
 <h3>Como rodar a aplicação:</h3>
 
@@ -52,10 +53,11 @@ npm start ou react-navite run-android(para android)
 <p><b>Axios</b>: https://www.npmjs.com/package/axios </p>
 <p><b>AsyncStorage</b>: https://reactnative.dev/docs/asyncstorage.html </p>
 <p><b>React Navigation</b>: https://reactnavigation.org/docs/getting-started/ </p>
+<br/>
 
 <h3>Projeto:</h3>
 <p>Projeto do curso de Front-End Mobile da Arbyte</p>
-<br/>
+
 
 <h3>Desenvolvedor:</h3>
-<p><b>Diego Chiodini</b> - https://github.com/dmchiodini </p><br/>
+<p><b>Diego Chiodini</b> - https://github.com/dmchiodini </p>
