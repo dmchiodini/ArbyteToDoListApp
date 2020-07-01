@@ -22,7 +22,7 @@ function LoginScreen(props) {
         .then(() => {
           props.navigation.push('Tarefas')
         })
-        .catch(err => alert('Erro. ', err.message));
+        .catch(err => alert('Dados Incorretos! '));
   }
 
   return (
