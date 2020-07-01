@@ -95,8 +95,7 @@ function TarefasScreen({navigation, dispatch, userData}) {
               return(             
                 <TaskArea                   
                   toggleStatus={toggleStatus} 
-                  deletar={deletar}                  
-                  editar={editar}
+                  deletar={deletar}
                   tarefa={task.description}
                   id={task.id}
                   completed={task.completed}
