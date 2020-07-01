@@ -15,7 +15,7 @@ function CadastroScreen(props) {
       return alert("Preencha os campos obrigatórios!");
     }
     cadastrar(nome, email)
-      .then(resposta => {
+      .then(() => {
         props.navigation.navigate('Login');
       })
       .catch(err => alert('Não foi possível cadastrar! ', err.message));
@@ -49,37 +49,27 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: '#d7dcf9'
   },
   texto: {
     fontSize: 20,
+    color: '#414b6e',
+    fontWeight: 'bold'
   },
   input: {
     width: 350,
     height: 40,
     fontSize: 18,
-    backgroundColor: '#CCCCCC',
+    color: '#414b6e',
+    backgroundColor: '#FFF',
     marginBottom: 50,
     marginTop: 10,
     borderRadius: 5,
   },
-  botao: {
-    width: 150,
-    height: 50,
-    backgroundColor: '#696969',
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 20,
-    paddingRight: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
-    borderRadius: 5,
-    marginBottom: 20,
-  },
   botaoCadastrar: {
     width: 150,
     height: 50,
-    backgroundColor: '#333333',
+    backgroundColor: '#414b6e',
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 20,

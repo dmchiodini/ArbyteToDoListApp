@@ -6,7 +6,7 @@ function login(email) {
         email: email,
     })
         .then(res => {
-               return res.data;                
+            return res.data;                
         })
 }
 

@@ -6,8 +6,8 @@ function cadastrar(nome, email) {
         fullName: nome,
         email: email
     })
-        .then(res => {
-            return res.data
+        .then(data => {
+            return
         })
 }
 
